@@ -1,9 +1,9 @@
 import { ParsedUrlQuery, stringify } from "querystring"
 import { createHmac } from "node:crypto"
-import User from './lib/user'
-import Market from './lib/market'
-import Trade from './lib/trade'
-import Sockets from './lib/websockets'
+import * as User from './lib/user'
+import * as Market from './lib/market'
+import * as Trade from './lib/trade'
+import * as Sockets from './lib/websockets'
 
 interface InitMethod {
   (config: KucoinNodeApiConfig): void;
@@ -39,6 +39,7 @@ class KucoinNodeApi {
   apiKey: string;
   passphrase: string;
 
+
   constructor(config: KucoinNodeApiConfig) {
     let url = ''
     if (config.environment === 'live') {
@@ -51,7 +52,13 @@ class KucoinNodeApi {
     this.secretKey = config.secretKey
     this.apiKey = config.apiKey
     this.passphrase = config.passphrase
+    this.init();
   }
+
+  private init() {
+    return Object.assign(this, User, Market, Trade, Sockets)
+  }
+
   public sign(endpoint: string, urlQueryObj: ParsedUrlQuery, method: string): KucoinHeaders {
     let nonce = Date.now() + ''
     let strForSign = ''
@@ -84,4 +91,4 @@ class KucoinNodeApi {
   }
 }
 
-export { KucoinNodeApi, User, Market, Trade, Sockets }
+export default KucoinNodeApi

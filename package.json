@@ -1,6 +1,6 @@
 {
-    "name": "kucoin-node-api",
-    "version": "2.1.4",
+    "name": "kucoin-typescript-api",
+    "version": "0.1.0",
     "description": "Node.js KuCoin Cryptocurrency Exchange v2 API Wrapper/SDK",
     "main": "index.ts",
     "scripts": {
@@ -16,7 +16,7 @@
         "KCS",
         "SDK"
     ],
-    "author": "Eric Abrahams",
+    "author": "Jonathan Irvin",
     "license": "ISC",
     "dependencies": {
         "axios": "^0.21.1",
